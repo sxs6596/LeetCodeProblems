@@ -27,7 +27,7 @@ void replaceWithPi(char str[], int start)
 }
 int main()
 {
-    char str[] = "pippppiiiipi";
+    char str[] = "pippppiiiipipi";
     replaceWithPi(str, 0);
     cout << str << endl;
     return 0;
