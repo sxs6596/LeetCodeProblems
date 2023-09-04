@@ -22,7 +22,7 @@ void letterCombinations(int num, string output, vector<string> &result, string o
 }
 void letterCombinations(string num)
 {
-    int number = stoi(num);
+    int number = stoi(num); // converting the string to integer.
     vector<string> result;
     string options[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     letterCombinations(number, "", result, options);

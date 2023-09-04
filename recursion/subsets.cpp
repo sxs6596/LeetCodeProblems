@@ -38,7 +38,7 @@ int main()
         {
             cout << it2 << " ";
         }
-        cout << "]" << endl;
+        cout << "]";
     }
     return 0;
 }
