@@ -23,6 +23,7 @@ void subsets(vector<int> &nums)
     vector<int> temp;
     int sum = 0;
     subsets(index, nums, temp, sum);
+    sort(temp.begin(), temp.end());
     cout << "[";
     for (auto it : temp)
     {
