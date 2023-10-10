@@ -9,7 +9,7 @@
  */
 class Solution {
 public:
-   TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 
   vector<TreeNode*> path1;
   vector<TreeNode*> path2;
