@@ -1,20 +1,22 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-       // bruteforce
-        vector<int>positive; 
-        vector<int>negative;
-        for(int i =0;i<nums.size();i++){
+      // define the pointers 
+        int positive = 0;
+        int negative = 1;
+      // define the size. 
+        int n = nums.size();
+        // define the ans vector
+        vector<int>ans(n,0); 
+        for(int i = 0;i<n;i++){
             if(nums[i] > 0){
-                positive.push_back(nums[i]);
+                ans[positive] = nums[i];
+                positive+=2;
             }else{
-                negative.push_back(nums[i]);
+                ans[negative] = nums[i];
+                negative+=2;
             }
         }
-        for(int i =0;i<nums.size()/2;i++){
-            nums[2*i] = positive[i];
-            nums[2*i+1] = negative[i];
-        }
-        return nums;
+        return ans; 
     }
 };
