@@ -12,14 +12,15 @@
 class Solution {
 public:
     int dfsHeight(TreeNode* root, int&maxi){
-        // basecase 
+//         base case 
         if(root == nullptr){
-            return 0;
+            return 0; 
         }
-        int lh = max(0, dfsHeight(root->left, maxi));
-        int rh = max(0, dfsHeight(root->right, maxi));
+        // left subtree height 
+        int lh = max(0,dfsHeight(root->left, maxi));
+        int rh = max(0,dfsHeight(root->right, maxi));
         maxi = max(maxi, lh+rh+root->val);
-        return root->val + max(lh, rh);
+        return max(lh,rh)+root->val; 
     }
     int maxPathSum(TreeNode* root) {
         int maxi = INT_MIN; 
