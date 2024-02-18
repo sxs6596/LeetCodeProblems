@@ -11,38 +11,48 @@
  */
 class Solution {
 public:
-  vector < vector < int >> zigzagLevelOrder(TreeNode * root) {
-  vector < vector < int >> result;
-  if (root == NULL) {
-    return result;
-  }
-
-  queue < TreeNode * > nodesQueue;
-  nodesQueue.push(root);
-  bool leftToRight = true;
-
-  while (!nodesQueue.empty()) {
-    int size = nodesQueue.size();
-    vector < int > row(size);
-    for (int i = 0; i < size; i++) {
-      TreeNode * node = nodesQueue.front();
-      nodesQueue.pop();
-
-      // find position to fill node's value
-      int index = (leftToRight) ? i : (size - 1 - i);
-
-      row[index] = node -> val;
-      if (node -> left) {
-        nodesQueue.push(node -> left);
-      }
-      if (node -> right) {
-        nodesQueue.push(node -> right);
-      }
+    vector<vector<int>> zigzaghelper(TreeNode* root, bool flag) {
+    vector<vector<int>> ans;
+    if (root == nullptr) {
+        return ans;
     }
-    // after this level
-    leftToRight = !leftToRight;
-    result.push_back(row);
-  }
-  return result;
+
+    queue<TreeNode*> q;
+    q.push(root);
+    while (!q.empty()) {
+        int levelSize = q.size(); // Correctly handle the number of nodes at the current level
+        vector<int> level;
+        for (int i = 0; i < levelSize; i++) {
+            TreeNode* temp = q.front();
+            q.pop();
+            if (flag) {
+                // Insert at the end
+                level.push_back(temp->val);
+            } else {
+                // Insert at the beginning to achieve reverse order
+                level.insert(level.begin(), temp->val);
+            }
+            // Always enqueue left child first, then right child
+            if (temp->left) {
+                q.push(temp->left);
+            }
+            if (temp->right) {
+                q.push(temp->right);
+            }
+        }
+        flag = !flag; // Toggle flag to reverse the order for the next level
+        ans.push_back(level);
+    }
+    return ans;
 }
+
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+//         define the answer 
+        vector<vector<int>>ans; 
+//         define the flag 
+        bool flag = true; 
+        ans = zigzaghelper(root,flag); 
+        return ans; 
+        }
+    
 };
