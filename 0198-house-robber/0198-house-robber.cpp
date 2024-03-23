@@ -1,3 +1,4 @@
+// using the memoization. 
 class Solution {
 public:
     int robDP(int index, vector<int>&nums, vector<int>&dp){
