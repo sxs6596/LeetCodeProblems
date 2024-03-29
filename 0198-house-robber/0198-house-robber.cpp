@@ -1,22 +1,26 @@
-// using the memoization. 
 class Solution {
 public:
-    int robDP(int index, vector<int>&nums, vector<int>&dp){
-        // base case 
-        if(index == 0) return nums[0];
-        if(index < 0) return 0; 
-        if(dp[index]!=-1){
-            return dp[index]; 
-        }
-        int pick = nums[index] + robDP(index-2, nums, dp);
-        int notpick = 0 + robDP(index-1, nums, dp); 
-        return dp[index] = max(pick, notpick);
+    // with memoization 
+    int robHelper(int n, vector<int>&nums, vector<int>&dp){
+//         base case 
         
+        if(n == 0){
+            return nums[0];
+        }
+        
+        if(n < 0 ) return 0; 
+        if(dp[n]!=-1)return dp[n]; 
+        
+        
+//         pick & dont pick 
+        int pick = robHelper( n-2, nums, dp) + nums[n]; 
+        int dontpick = robHelper(n-1, nums, dp) + 0; 
+        
+        return dp[n]=max(pick , dontpick); 
     }
     int rob(vector<int>& nums) {
-        int index = nums.size();
-        vector<int>dp(index+1, -1);
-        int ans = robDP(index-1, nums, dp); 
-        return ans; 
+        int n = nums.size(); 
+        vector<int>dp(n+1,-1); 
+        return robHelper(n-1,nums, dp); 
     }
 };
