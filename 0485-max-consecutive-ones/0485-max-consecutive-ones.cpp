@@ -1,20 +1,21 @@
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
-        // define the size 
+//         define the two pointers. 
+        int l = 0;
+        int r = 0;
         int n = nums.size();
-        // define the pointers 
-        int L = 0;
-        int R = 0; 
-        // define the maxLen 
-        int maxLen = 0;
-        while(R <n){
-            if(nums[R] !=1){
-                maxLen = max(maxLen, R-L);
-                L = R+1;
+        int maxi = 0; 
+        while(r<n){
+            if(nums[r] == 1){
+                r++;
+            }else{
+                maxi = max(maxi, r-l);
+                r++; 
+                l = r; 
             }
-            R++;
         }
-        return max(maxLen, R-L);
+        maxi = max(maxi, r-l); 
+        return maxi; 
     }
 };
