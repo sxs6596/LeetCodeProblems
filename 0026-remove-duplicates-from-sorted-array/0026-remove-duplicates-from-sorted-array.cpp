@@ -1,11 +1,17 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        set<int>s(nums.begin(), nums.end()); 
-        int index = 0; 
-        for(auto it : s){
-            nums[index++] = it; 
+//         define the pointers 
+        int l =0;
+        int r = 1;
+        int n = nums.size(); 
+        while(r<n){
+            while(nums[l]!=nums[r]){
+                l++; 
+                nums[l] = nums[r]; 
+            }
+            r++; 
         }
-        return index; 
+        return l+1; 
     }
 };
